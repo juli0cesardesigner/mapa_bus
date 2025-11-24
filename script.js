@@ -20,15 +20,29 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Create and render bus seats grid
+ * Create and render bus seats grid with corridor
  */
 function renderSeats() {
-    const seatsGrid = document.getElementById('seatsGrid');
-    seatsGrid.innerHTML = '';
+    const seatsLeft = document.getElementById('seatsLeft');
+    const seatsRight = document.getElementById('seatsRight');
+    
+    seatsLeft.innerHTML = '';
+    seatsRight.innerHTML = '';
 
-    for (let i = 1; i <= BUS_CONFIG.totalSeats; i++) {
+    // 20 seats on each side (left and right)
+    const leftSeats = 20;
+    const rightSeats = 20;
+
+    // Render left side seats (1-20)
+    for (let i = 1; i <= leftSeats; i++) {
         const seat = createSeatElement(i);
-        seatsGrid.appendChild(seat);
+        seatsLeft.appendChild(seat);
+    }
+
+    // Render right side seats (21-40)
+    for (let i = leftSeats + 1; i <= BUS_CONFIG.totalSeats; i++) {
+        const seat = createSeatElement(i);
+        seatsRight.appendChild(seat);
     }
 }
 

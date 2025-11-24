@@ -10,62 +10,65 @@
     --secondary-color: #10b981;
     --danger-color: #ef4444;
     --warning-color: #f59e0b;
-    --bg-color: #f3f4f6;
+    --bg-color: #f9fafb;
     --text-dark: #1f2937;
     --text-light: #6b7280;
     --border-color: #e5e7eb;
-    --seat-size: 35px;
-    --seat-gap: 8px;
+    --seat-size: 40px;
+    --seat-gap: 12px;
+    --corridor-width: 50px;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #ffffff;
     color: var(--text-dark);
     line-height: 1.6;
     min-height: 100vh;
-    padding: 20px;
+    padding: 15px;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     overflow: hidden;
 }
 
 /* Header */
 header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 30px 20px;
+    background: white;
+    color: var(--text-dark);
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
     text-align: center;
 }
 
 header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    font-weight: 600;
 }
 
 .subtitle {
-    font-size: 1.1rem;
-    opacity: 0.95;
+    font-size: 0.95rem;
+    color: var(--text-light);
 }
 
 /* Main Content */
 main {
-    padding: 30px 20px;
+    padding: 20px;
 }
 
 .content-wrapper {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 30px;
+    grid-template-columns: 1fr 280px;
+    gap: 25px;
 }
 
-/* Bus Section */
+/* Bus Section - Minimalista */
 .bus-section {
     display: flex;
     justify-content: center;
@@ -73,7 +76,7 @@ main {
 
 .bus-container {
     width: 100%;
-    max-width: 500px;
+    max-width: 700px;
 }
 
 .bus-header {
@@ -81,115 +84,163 @@ main {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .bus-name {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: var(--text-dark);
 }
 
 .bus-stats {
     display: flex;
-    gap: 20px;
+    gap: 15px;
 }
 
 .stat {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text-light);
 }
 
 .stat strong {
     color: var(--text-dark);
-    margin-left: 5px;
+    margin-left: 4px;
+    font-weight: 600;
 }
 
 /* Bus Layout */
 .bus-layout {
-    background: var(--bg-color);
+    background: white;
     padding: 20px;
-    border-radius: 8px;
-    border: 2px solid var(--border-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
 }
 
 .bus-body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
 }
 
 .bus-front {
-    font-size: 3rem;
+    font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
-/* Seats Grid */
+/* Seats Grid com Corredor */
 .seats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, var(--seat-size));
+    display: flex;
     gap: var(--seat-gap);
     padding: 15px;
-    background: white;
-    border-radius: 8px;
+    background: var(--bg-color);
+    border-radius: 4px;
     justify-content: center;
+    align-items: center;
 }
 
-.seat {
-    width: var(--seat-size);
-    height: var(--seat-size);
-    border: 2px solid var(--border-color);
-    border-radius: 4px;
+/* Lado esquerdo (2 colunas) */
+.seats-left {
+    display: grid;
+    grid-template-columns: repeat(2, var(--seat-size));
+    gap: var(--seat-gap);
+}
+
+/* Lado direito (2 colunas) */
+.seats-right {
+    display: grid;
+    grid-template-columns: repeat(2, var(--seat-size));
+    gap: var(--seat-gap);
+}
+
+/* Corredor do ônibus */
+.corridor {
+    width: var(--corridor-width);
+    background: linear-gradient(90deg, #e5e7eb 0%, #f3f4f6 50%, #e5e7eb 100%);
+    border-left: 2px solid #d1d5db;
+    border-right: 2px solid #d1d5db;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
+    position: relative;
+    border-radius: 2px;
+}
+
+.corridor::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    background: repeating-linear-gradient(
+        to bottom,
+        #d1d5db 0px,
+        #d1d5db 10px,
+        transparent 10px,
+        transparent 20px
+    );
+}
+
+/* Seat */
+.seat {
+    width: var(--seat-size);
+    height: var(--seat-size);
+    border: 1.5px solid var(--border-color);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
     font-size: 0.75rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     background: white;
+    user-select: none;
 }
 
 .seat-available {
-    background: #dbeafe;
-    border-color: var(--primary-color);
-    color: var(--primary-color);
+    background: white;
+    border-color: #cbd5e1;
+    color: var(--text-light);
 }
 
 .seat-available:hover {
-    background: var(--primary-color);
-    color: white;
-    transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    background: #eff6ff;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: scale(1.08);
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
 }
 
 .seat-occupied {
-    background: #fecaca;
-    border-color: var(--danger-color);
+    background: #fee2e2;
+    border-color: #fca5a5;
     color: var(--danger-color);
     cursor: not-allowed;
-    opacity: 0.7;
+    opacity: 0.75;
 }
 
 .seat-selected {
     background: var(--secondary-color);
     border-color: var(--secondary-color);
     color: white;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
-    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+    transform: scale(1.08);
 }
 
 /* Legend */
 .legend {
     display: flex;
-    gap: 20px;
+    gap: 18px;
     margin-top: 15px;
-    padding: 15px;
-    background: white;
-    border-radius: 8px;
+    padding: 12px 15px;
+    background: var(--bg-color);
+    border-radius: 4px;
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -197,14 +248,16 @@ main {
 .legend-item {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--text-light);
 }
 
 .legend-item .seat {
-    width: 25px;
-    height: 25px;
+    width: 22px;
+    height: 22px;
     cursor: default;
+    border-radius: 2px;
 }
 
 .legend-item .seat:hover {
@@ -214,54 +267,63 @@ main {
 
 /* Management Section */
 .management-section {
-    background: var(--bg-color);
-    padding: 20px;
-    border-radius: 8px;
-    border: 2px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
     height: fit-content;
+}
+
+.management-panel {
+    background: white;
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
 }
 
 .management-panel h2 {
     color: var(--text-dark);
-    margin-bottom: 20px;
-    font-size: 1.5rem;
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
     border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 10px;
+    padding-bottom: 8px;
 }
 
 .management-panel h3 {
     color: var(--text-dark);
-    margin-bottom: 12px;
-    font-size: 1.1rem;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
 }
 
 /* Form Group */
 .form-group {
-    margin-bottom: 25px;
-    padding: 15px;
-    background: white;
-    border-radius: 8px;
+    margin-bottom: 18px;
+    padding: 12px;
+    background: var(--bg-color);
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
 }
 
 .input-group {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 .input-field {
-    padding: 10px 12px;
+    padding: 8px 10px;
     border: 1px solid var(--border-color);
-    border-radius: 6px;
-    font-size: 0.95rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
     font-family: inherit;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
+    background: white;
 }
 
 .input-field:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
 }
 
 .input-field:disabled {
@@ -271,20 +333,20 @@ main {
 }
 
 .help-text {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-light);
-    margin-top: 5px;
+    margin-top: 4px;
 }
 
 /* Buttons */
 .btn {
-    padding: 10px 16px;
+    padding: 8px 14px;
     border: none;
-    border-radius: 6px;
-    font-size: 0.95rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     font-family: inherit;
 }
 
@@ -295,7 +357,7 @@ main {
 
 .btn-primary:hover {
     background: var(--primary-dark);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
 }
 
 .btn-primary:active {
@@ -309,7 +371,7 @@ main {
 
 .btn-danger:hover {
     background: #dc2626;
-    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+    box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3);
 }
 
 .btn-danger:active {
@@ -317,131 +379,174 @@ main {
 }
 
 .btn-small {
-    padding: 8px 12px;
-    font-size: 0.85rem;
+    padding: 6px 10px;
+    font-size: 0.8rem;
 }
 
 /* Passengers Container */
 .passengers-container {
-    padding: 15px;
-    background: white;
-    border-radius: 8px;
+    padding: 12px;
+    background: var(--bg-color);
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
 }
 
 .search-box {
-    margin: 12px 0 15px 0;
+    margin: 10px 0 12px 0;
 }
 
 .passenger-list {
     list-style: none;
-    max-height: 400px;
+    max-height: 350px;
     overflow-y: auto;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .passenger-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 12px;
-    background: var(--bg-color);
-    border-radius: 6px;
-    margin-bottom: 8px;
-    border-left: 4px solid var(--primary-color);
-    transition: all 0.3s ease;
+    padding: 9px 10px;
+    background: white;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    border-left: 3px solid var(--primary-color);
+    transition: all 0.2s ease;
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--primary-color);
 }
 
 .passenger-item:hover {
-    background: #e0e7ff;
-    transform: translateX(4px);
+    background: #f9fafb;
+    transform: translateX(2px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .passenger-info {
     flex: 1;
+    min-width: 0;
 }
 
 .passenger-name {
     font-weight: 600;
     color: var(--text-dark);
+    font-size: 0.9rem;
 }
 
 .passenger-seat {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-light);
-    margin-top: 3px;
+    margin-top: 2px;
 }
 
 .passenger-seat-number {
     background: var(--primary-color);
     color: white;
-    padding: 2px 8px;
-    border-radius: 4px;
+    padding: 1px 6px;
+    border-radius: 3px;
     font-weight: 600;
+    font-size: 0.75rem;
 }
 
 .btn-remove {
     background: var(--danger-color);
     color: white;
     border: none;
-    padding: 6px 10px;
-    border-radius: 4px;
+    padding: 5px 8px;
+    border-radius: 3px;
     cursor: pointer;
-    font-size: 0.8rem;
-    transition: all 0.3s ease;
+    font-size: 0.75rem;
+    transition: all 0.2s ease;
+    margin-left: 6px;
+    flex-shrink: 0;
 }
 
 .btn-remove:hover {
     background: #dc2626;
-    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+    box-shadow: 0 1px 4px rgba(239, 68, 68, 0.3);
 }
 
 .empty-message {
     text-align: center;
-    padding: 20px;
+    padding: 15px;
     color: var(--text-light);
     font-style: italic;
+    font-size: 0.9rem;
 }
 
 /* Footer */
 footer {
-    background: var(--text-dark);
-    color: white;
+    background: var(--bg-color);
+    color: var(--text-light);
     text-align: center;
-    padding: 20px;
-    font-size: 0.9rem;
+    padding: 12px;
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Scrollbar Styling */
+.passenger-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.passenger-list::-webkit-scrollbar-track {
+    background: var(--bg-color);
+    border-radius: 3px;
+}
+
+.passenger-list::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+}
+
+.passenger-list::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .content-wrapper {
         grid-template-columns: 1fr;
     }
 
+    :root {
+        --seat-size: 36px;
+        --seat-gap: 10px;
+        --corridor-width: 45px;
+    }
+}
+
+@media (max-width: 768px) {
     header h1 {
-        font-size: 1.8rem;
+        font-size: 1.4rem;
     }
 
     .bus-stats {
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
         align-items: flex-end;
     }
 
     :root {
-        --seat-size: 30px;
-        --seat-gap: 6px;
+        --seat-size: 32px;
+        --seat-gap: 8px;
+        --corridor-width: 40px;
     }
 
-    .seats-grid {
-        grid-template-columns: repeat(4, var(--seat-size));
+    main {
+        padding: 15px;
     }
 
     .management-panel h2 {
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
 
-    .input-group {
-        flex-direction: column;
+    .legend {
+        gap: 12px;
+    }
+
+    .legend-item {
+        font-size: 0.8rem;
     }
 
     .passenger-list {
@@ -455,28 +560,25 @@ footer {
     }
 
     header {
-        padding: 20px 15px;
+        padding: 15px 12px;
     }
 
     header h1 {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 
     main {
-        padding: 15px 10px;
+        padding: 12px;
+    }
+
+    .content-wrapper {
+        gap: 15px;
     }
 
     :root {
         --seat-size: 28px;
-        --seat-gap: 5px;
-    }
-
-    .legend {
-        gap: 10px;
-    }
-
-    .legend-item {
-        font-size: 0.8rem;
+        --seat-gap: 6px;
+        --corridor-width: 35px;
     }
 
     .bus-name {
@@ -484,6 +586,18 @@ footer {
     }
 
     .stat {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+    }
+
+    .management-panel {
+        padding: 12px;
+    }
+
+    .passenger-list {
+        max-height: 250px;
+    }
+
+    .bus-layout {
+        padding: 15px;
     }
 }

@@ -9,8 +9,8 @@
 <body>
     <div class="container">
         <header>
-            <h1>🚌 Gerenciador de Assentos - Ônibus</h1>
-            <p class="subtitle">Gerencie a posição dos passageiros nos assentos do ônibus</p>
+            <h1>🚌 Mapa de Ônibus</h1>
+            <p class="subtitle">Gerenciador de assentos</p>
         </header>
 
         <main>
@@ -19,10 +19,12 @@
                 <section class="bus-section">
                     <div class="bus-container">
                         <div class="bus-header">
-                            <span class="bus-name">Ônibus - 40 Assentos</span>
-                            <div class="bus-stats">
-                                <span class="stat">Ocupados: <strong id="occupiedCount">0</strong></span>
-                                <span class="stat">Disponíveis: <strong id="availableCount">40</strong></span>
+                            <div>
+                                <span class="bus-name">Ônibus</span>
+                                <div class="bus-stats" style="margin-top: 6px;">
+                                    <span class="stat">Ocupados: <strong id="occupiedCount">0</strong></span>
+                                    <span class="stat">Disponíveis: <strong id="availableCount">40</strong></span>
+                                </div>
                             </div>
                         </div>
 
@@ -31,8 +33,12 @@
                                 <!-- Front of bus -->
                                 <div class="bus-front">🚗</div>
 
-                                <!-- Seat grid -->
-                                <div class="seats-grid" id="seatsGrid"></div>
+                                <!-- Seat grid with corridor -->
+                                <div class="seats-grid" id="seatsGrid">
+                                    <div class="seats-left" id="seatsLeft"></div>
+                                    <div class="corridor"></div>
+                                    <div class="seats-right" id="seatsRight"></div>
+                                </div>
 
                                 <!-- Legend -->
                                 <div class="legend">
@@ -57,16 +63,16 @@
                 <!-- Passenger Management -->
                 <section class="management-section">
                     <div class="management-panel">
-                        <h2>Gerenciamento de Passageiros</h2>
+                        <h2>Passageiros</h2>
 
                         <!-- Add Passenger Form -->
                         <div class="form-group">
-                            <h3>Adicionar Passageiro</h3>
+                            <h3>Novo Passageiro</h3>
                             <div class="input-group">
                                 <input 
                                     type="text" 
                                     id="passengerName" 
-                                    placeholder="Nome do Passageiro"
+                                    placeholder="Nome"
                                     class="input-field"
                                 >
                                 <select id="seatSelect" class="input-field">
@@ -74,22 +80,22 @@
                                 </select>
                                 <button id="addPassengerBtn" class="btn btn-primary">Adicionar</button>
                             </div>
-                            <small class="help-text">Clique em um assento disponível no mapa para selecioná-lo</small>
+                            <small class="help-text">Clique no assento ou selecione no dropdown</small>
                         </div>
 
                         <!-- Passengers List -->
                         <div class="passengers-container">
-                            <h3>Passageiros Cadastrados (<span id="passengerCount">0</span>)</h3>
+                            <h3>Cadastrados (<span id="passengerCount">0</span>)</h3>
                             <div class="search-box">
                                 <input 
                                     type="text" 
                                     id="searchInput" 
-                                    placeholder="Buscar por nome ou assento..."
+                                    placeholder="Buscar..."
                                     class="input-field"
                                 >
                             </div>
                             <ul id="passengerList" class="passenger-list"></ul>
-                            <button id="clearAllBtn" class="btn btn-danger btn-small">Limpar Todos</button>
+                            <button id="clearAllBtn" class="btn btn-danger btn-small" style="width: 100%;">Limpar Todos</button>
                         </div>
                     </div>
                 </section>
@@ -97,7 +103,7 @@
         </main>
 
         <footer>
-            <p>&copy; 2025 Mapa de Ônibus. Desenvolvido para gerenciamento eficiente de assentos.</p>
+            <p>&copy; 2025 Mapa de Ônibus</p>
         </footer>
     </div>
 
