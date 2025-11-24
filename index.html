@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Ônibus - Gerenciador de Assentos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚌 Gerenciador de Assentos - Ônibus</h1>
+            <p class="subtitle">Gerencie a posição dos passageiros nos assentos do ônibus</p>
+        </header>
+
+        <main>
+            <div class="content-wrapper">
+                <!-- Bus Seating Layout -->
+                <section class="bus-section">
+                    <div class="bus-container">
+                        <div class="bus-header">
+                            <span class="bus-name">Ônibus - 40 Assentos</span>
+                            <div class="bus-stats">
+                                <span class="stat">Ocupados: <strong id="occupiedCount">0</strong></span>
+                                <span class="stat">Disponíveis: <strong id="availableCount">40</strong></span>
+                            </div>
+                        </div>
+
+                        <div class="bus-layout">
+                            <div class="bus-body">
+                                <!-- Front of bus -->
+                                <div class="bus-front">🚗</div>
+
+                                <!-- Seat grid -->
+                                <div class="seats-grid" id="seatsGrid"></div>
+
+                                <!-- Legend -->
+                                <div class="legend">
+                                    <div class="legend-item">
+                                        <div class="seat seat-available"></div>
+                                        <span>Disponível</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="seat seat-occupied"></div>
+                                        <span>Ocupado</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="seat seat-selected"></div>
+                                        <span>Selecionado</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Passenger Management -->
+                <section class="management-section">
+                    <div class="management-panel">
+                        <h2>Gerenciamento de Passageiros</h2>
+
+                        <!-- Add Passenger Form -->
+                        <div class="form-group">
+                            <h3>Adicionar Passageiro</h3>
+                            <div class="input-group">
+                                <input 
+                                    type="text" 
+                                    id="passengerName" 
+                                    placeholder="Nome do Passageiro"
+                                    class="input-field"
+                                >
+                                <select id="seatSelect" class="input-field" disabled>
+                                    <option value="">Selecione um assento</option>
+                                </select>
+                                <button id="addPassengerBtn" class="btn btn-primary">Adicionar</button>
+                            </div>
+                            <small class="help-text">Clique em um assento disponível no mapa para selecioná-lo</small>
+                        </div>
+
+                        <!-- Passengers List -->
+                        <div class="passengers-container">
+                            <h3>Passageiros Cadastrados (<span id="passengerCount">0</span>)</h3>
+                            <div class="search-box">
+                                <input 
+                                    type="text" 
+                                    id="searchInput" 
+                                    placeholder="Buscar por nome ou assento..."
+                                    class="input-field"
+                                >
+                            </div>
+                            <ul id="passengerList" class="passenger-list"></ul>
+                            <button id="clearAllBtn" class="btn btn-danger btn-small">Limpar Todos</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Mapa de Ônibus. Desenvolvido para gerenciamento eficiente de assentos.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
