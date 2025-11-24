@@ -5,33 +5,61 @@
 }
 
 :root {
-    --primary: #2563eb;
+    --primary-color: #2563eb;
     --primary-dark: #1e40af;
-    --secondary: #10b981;
-    --danger: #ef4444;
-    --bg: #f9fafb;
-    --text: #1f2937;
+    --secondary-color: #10b981;
+    --danger-color: #ef4444;
+    --warning-color: #f59e0b;
+    --bg-color: #f9fafb;
+    --text-dark: #1f2937;
     --text-light: #6b7280;
-    --border: #e5e7eb;
+    --border-color: #e5e7eb;
     --seat-size: 40px;
-    --gap: 12px;
-    --corridor: 50px;
+    --seat-gap: 12px;
+    --corridor-width: 50px;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: white;
-    color: var(--text);
+    background: #ffffff;
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
     padding: 15px;
 }
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
 }
 
+/* Header */
+header {
+    background: white;
+    color: var(--text-dark);
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 0.95rem;
+    color: var(--text-light);
+}
+
+/* Main Content */
 main {
-    padding: 0;
+    padding: 20px;
 }
 
 .content-wrapper {
@@ -40,6 +68,7 @@ main {
     gap: 25px;
 }
 
+/* Bus Section - Minimalista */
 .bus-section {
     display: flex;
     justify-content: center;
@@ -52,47 +81,94 @@ main {
 
 .bus-header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
     padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.9rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
-.bus-header strong {
+.bus-name {
+    font-size: 1.2rem;
     font-weight: 600;
-    margin-left: 4px;
+    color: var(--text-dark);
 }
 
+.bus-stats {
+    display: flex;
+    gap: 15px;
+}
+
+.stat {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.stat strong {
+    color: var(--text-dark);
+    margin-left: 4px;
+    font-weight: 600;
+}
+
+/* Bus Layout */
 .bus-layout {
     background: white;
     padding: 20px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-color);
     border-radius: 6px;
 }
 
+.bus-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.bus-front {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* Seats Grid com Corredor */
 .seats-grid {
     display: flex;
-    gap: var(--gap);
+    gap: var(--seat-gap);
+    padding: 15px;
+    background: var(--bg-color);
+    border-radius: 4px;
     justify-content: center;
     align-items: center;
 }
 
-.seats-left,
+/* Lado esquerdo (2 colunas) */
+.seats-left {
+    display: grid;
+    grid-template-columns: repeat(2, var(--seat-size));
+    gap: var(--seat-gap);
+}
+
+/* Lado direito (2 colunas) */
 .seats-right {
     display: grid;
     grid-template-columns: repeat(2, var(--seat-size));
-    gap: var(--gap);
+    gap: var(--seat-gap);
 }
 
+/* Corredor do ônibus */
 .corridor {
-    width: var(--corridor);
+    width: var(--corridor-width);
     background: linear-gradient(90deg, #e5e7eb 0%, #f3f4f6 50%, #e5e7eb 100%);
     border-left: 2px solid #d1d5db;
     border-right: 2px solid #d1d5db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
     border-radius: 2px;
-    height: 280px;
 }
 
 .corridor::before {
@@ -112,10 +188,11 @@ main {
     );
 }
 
+/* Seat */
 .seat {
     width: var(--seat-size);
     height: var(--seat-size);
-    border: 1.5px solid var(--border);
+    border: 1.5px solid var(--border-color);
     border-radius: 3px;
     display: flex;
     align-items: center;
@@ -136,8 +213,8 @@ main {
 
 .seat-available:hover {
     background: #eff6ff;
-    border-color: var(--primary);
-    color: var(--primary);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
     transform: scale(1.08);
     box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
 }
@@ -145,19 +222,52 @@ main {
 .seat-occupied {
     background: #fee2e2;
     border-color: #fca5a5;
-    color: var(--danger);
+    color: var(--danger-color);
     cursor: not-allowed;
     opacity: 0.75;
 }
 
 .seat-selected {
-    background: var(--secondary);
-    border-color: var(--secondary);
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
     color: white;
     box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
     transform: scale(1.08);
 }
 
+/* Legend */
+.legend {
+    display: flex;
+    gap: 18px;
+    margin-top: 15px;
+    padding: 12px 15px;
+    background: var(--bg-color);
+    border-radius: 4px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.legend-item .seat {
+    width: 22px;
+    height: 22px;
+    cursor: default;
+    border-radius: 2px;
+}
+
+.legend-item .seat:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Management Section */
 .management-section {
     display: flex;
     flex-direction: column;
@@ -167,16 +277,36 @@ main {
 .management-panel {
     background: white;
     padding: 16px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-color);
     border-radius: 6px;
 }
 
+.management-panel h2 {
+    color: var(--text-dark);
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 8px;
+}
+
+.management-panel h3 {
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* Form Group */
 .form-group {
     margin-bottom: 18px;
     padding: 12px;
-    background: var(--bg);
+    background: var(--bg-color);
     border-radius: 4px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-color);
+}
+
+.input-group {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -184,7 +314,7 @@ main {
 
 .input-field {
     padding: 8px 10px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 0.9rem;
     font-family: inherit;
@@ -194,10 +324,23 @@ main {
 
 .input-field:focus {
     outline: none;
-    border-color: var(--primary);
+    border-color: var(--primary-color);
     box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
 }
 
+.input-field:disabled {
+    background: #f3f4f6;
+    color: var(--text-light);
+    cursor: not-allowed;
+}
+
+.help-text {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 4px;
+}
+
+/* Buttons */
 .btn {
     padding: 8px 14px;
     border: none;
@@ -210,7 +353,7 @@ main {
 }
 
 .btn-primary {
-    background: var(--primary);
+    background: var(--primary-color);
     color: white;
 }
 
@@ -219,10 +362,13 @@ main {
     box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
 }
 
+.btn-primary:active {
+    transform: translateY(1px);
+}
+
 .btn-danger {
-    background: var(--danger);
+    background: var(--danger-color);
     color: white;
-    width: 100%;
 }
 
 .btn-danger:hover {
@@ -230,20 +376,32 @@ main {
     box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3);
 }
 
+.btn-danger:active {
+    transform: translateY(1px);
+}
+
+.btn-small {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+}
+
+/* Passengers Container */
 .passengers-container {
     padding: 12px;
-    background: var(--bg);
+    background: var(--bg-color);
     border-radius: 4px;
-    border: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.search-box {
+    margin: 10px 0 12px 0;
 }
 
 .passenger-list {
     list-style: none;
     max-height: 350px;
     overflow-y: auto;
+    margin-bottom: 10px;
 }
 
 .passenger-item {
@@ -253,10 +411,11 @@ main {
     padding: 9px 10px;
     background: white;
     border-radius: 4px;
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--primary);
-    transition: all 0.2s ease;
     margin-bottom: 6px;
+    border-left: 3px solid var(--primary-color);
+    transition: all 0.2s ease;
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--primary-color);
 }
 
 .passenger-item:hover {
@@ -272,7 +431,7 @@ main {
 
 .passenger-name {
     font-weight: 600;
-    color: var(--text);
+    color: var(--text-dark);
     font-size: 0.9rem;
 }
 
@@ -283,7 +442,7 @@ main {
 }
 
 .passenger-seat-number {
-    background: var(--primary);
+    background: var(--primary-color);
     color: white;
     padding: 1px 6px;
     border-radius: 3px;
@@ -292,7 +451,7 @@ main {
 }
 
 .btn-remove {
-    background: var(--danger);
+    background: var(--danger-color);
     color: white;
     border: none;
     padding: 5px 8px;
@@ -313,15 +472,27 @@ main {
     text-align: center;
     padding: 15px;
     color: var(--text-light);
+    font-style: italic;
     font-size: 0.9rem;
 }
 
+/* Footer */
+footer {
+    background: var(--bg-color);
+    color: var(--text-light);
+    text-align: center;
+    padding: 12px;
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Scrollbar Styling */
 .passenger-list::-webkit-scrollbar {
     width: 6px;
 }
 
 .passenger-list::-webkit-scrollbar-track {
-    background: var(--bg);
+    background: var(--bg-color);
     border-radius: 3px;
 }
 
@@ -334,6 +505,7 @@ main {
     background: #9ca3af;
 }
 
+/* Responsive Design */
 @media (max-width: 1024px) {
     .content-wrapper {
         grid-template-columns: 1fr;
@@ -341,20 +513,42 @@ main {
 
     :root {
         --seat-size: 36px;
-        --gap: 10px;
-        --corridor: 45px;
+        --seat-gap: 10px;
+        --corridor-width: 45px;
     }
 }
 
 @media (max-width: 768px) {
-    :root {
-        --seat-size: 32px;
-        --gap: 8px;
-        --corridor: 40px;
+    header h1 {
+        font-size: 1.4rem;
     }
 
-    body {
-        padding: 10px;
+    .bus-stats {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-end;
+    }
+
+    :root {
+        --seat-size: 32px;
+        --seat-gap: 8px;
+        --corridor-width: 40px;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    .management-panel h2 {
+        font-size: 1rem;
+    }
+
+    .legend {
+        gap: 12px;
+    }
+
+    .legend-item {
+        font-size: 0.8rem;
     }
 
     .passenger-list {
@@ -363,21 +557,49 @@ main {
 }
 
 @media (max-width: 480px) {
-    :root {
-        --seat-size: 28px;
-        --gap: 6px;
-        --corridor: 35px;
+    .container {
+        border-radius: 0;
+    }
+
+    header {
+        padding: 15px 12px;
+    }
+
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+    main {
+        padding: 12px;
     }
 
     .content-wrapper {
-        grid-template-columns: 1fr;
+        gap: 15px;
     }
 
-    .bus-header {
+    :root {
+        --seat-size: 28px;
+        --seat-gap: 6px;
+        --corridor-width: 35px;
+    }
+
+    .bus-name {
+        font-size: 1rem;
+    }
+
+    .stat {
         font-size: 0.8rem;
+    }
+
+    .management-panel {
+        padding: 12px;
     }
 
     .passenger-list {
         max-height: 250px;
+    }
+
+    .bus-layout {
+        padding: 15px;
     }
 }

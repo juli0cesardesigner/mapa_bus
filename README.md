@@ -1,10 +1,10 @@
-# 🚌 Mapa de Ônibus - Gerenciador de Assentos
+# Mapa de Ônibus - Gerenciador de Assentos
 
-Um aplicativo web interativo para gerenciar a posição de clientes nas poltronas de ônibus. Desenvolvido com HTML, CSS e JavaScript vanilla, pronto para ser executado no GitHub Pages.
+Um aplicativo web para gerenciar a posição de clientes nas poltronas de ônibus. Desenvolvido com HTML, CSS e JavaScript vanilla, pronto para ser executado no GitHub Pages.
 
-## ✨ Funcionalidades
+## Funcionalidades
 
-- **Visualização Interativa de Assentos**: Mapa visual dos 40 assentos do ônibus com status em tempo real
+- **Visualização Interativa de Assentos**: Mapa visual dos assentos do ônibus com status em tempo real
 - **Gerenciamento de Passageiros**: Adicionar e remover passageiros com suas respectivas poltronas
 - **Seleção de Assentos**: Clique em um assento disponível para selecioná-lo antes de adicionar um passageiro
 - **Busca e Filtro**: Procure passageiros por nome ou número de assento
@@ -12,7 +12,7 @@ Um aplicativo web interativo para gerenciar a posição de clientes nas poltrona
 - **Responsivo**: Interface adaptável para desktop, tablet e celular
 - **Status em Tempo Real**: Contador automático de assentos ocupados e disponíveis
 
-## 📋 Como Usar
+## Como Usar
 
 ### Localmente
 
@@ -39,11 +39,11 @@ Acesse: `https://juli0cesardesigner.github.io/mapa_bus/`
 
 > **Nota**: Certifique-se de ativar o GitHub Pages nas configurações do repositório
 
-## 🎯 Guia de Uso
+## Guia de Uso
 
 1. **Adicionar Passageiro**:
-   - Digite o nome do passageiro no campo "Nome do Passageiro"
-   - Clique em um assento disponível (azul) no mapa do ônibus
+   - Digite o nome do passageiro no campo "Nome"
+   - Clique em um assento disponível no mapa do ônibus ou selecione no dropdown
    - Clique no botão "Adicionar"
 
 2. **Visualizar Passageiros**:
@@ -57,7 +57,7 @@ Acesse: `https://juli0cesardesigner.github.io/mapa_bus/`
    - Clique no botão "Remover" ao lado do passageiro na lista
    - Ou use "Limpar Todos" para remover todos os passageiros
 
-## 🏗️ Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 mapa_bus/
@@ -68,7 +68,7 @@ mapa_bus/
 └── .gitignore          # Arquivos ignorados pelo Git
 ```
 
-## 🎨 Características Técnicas
+## Características Técnicas
 
 - **Sem Dependências**: Utiliza apenas HTML, CSS e JavaScript vanilla
 - **Modern CSS**: Grid layout, flexbox, variáveis CSS e media queries
@@ -77,12 +77,12 @@ mapa_bus/
 - **Acessibilidade**: Títulos descritivos e estrutura semântica
 - **Mobile First**: Design responsivo e otimizado para todos os tamanhos
 
-## 📊 Configuração de Assentos
+## Configuração de Assentos
 
 Atualmente configurado para:
 - **Total de Assentos**: 40
-- **Assentos por Linha**: 4
-- **Layout**: 10 linhas × 4 colunas
+- **Distribuição**: 20 assentos por lado (lado esquerdo e direito)
+- **Layout**: 10 linhas × 2 colunas (cada lado)
 
 Para modificar essas configurações, edite a seção `BUS_CONFIG` no arquivo `script.js`:
 
@@ -94,15 +94,15 @@ const BUS_CONFIG = {
 };
 ```
 
-## 🌈 Legenda de Cores
+## Legenda de Cores
 
 | Cor | Status | Significado |
 |-----|--------|-------------|
-| 🔵 Azul | Disponível | Assento vazio e disponível para seleção |
-| 🔴 Vermelho | Ocupado | Assento já possui um passageiro |
-| 🟢 Verde | Selecionado | Assento selecionado para novo passageiro |
+| Azul Claro | Disponível | Assento vazio e disponível para seleção |
+| Vermelho | Ocupado | Assento já possui um passageiro |
+| Verde | Selecionado | Assento selecionado para novo passageiro |
 
-## 💾 Dados Persistidos
+## Dados Persistidos
 
 Os seguintes dados são salvos automaticamente:
 - Nome do passageiro
@@ -112,21 +112,21 @@ Os seguintes dados são salvos automaticamente:
 
 Os dados são armazenados localmente no navegador usando `localStorage` e não são enviados a nenhum servidor.
 
-## 🔒 Privacidade e Segurança
+## Privacidade e Segurança
 
 - Todos os dados são armazenados localmente no seu navegador
 - Nenhuma informação é enviada a servidores externos
 - Os dados são limpos se você limpar o cache do navegador
 - A aplicação é segura contra XSS (Cross-Site Scripting)
 
-## 📱 Compatibilidade
+## Compatibilidade
 
-- ✅ Chrome/Edge (versão 90+)
-- ✅ Firefox (versão 88+)
-- ✅ Safari (versão 14+)
-- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
+- Chrome/Edge (versão 90+)
+- Firefox (versão 88+)
+- Safari (versão 14+)
+- Mobile browsers (iOS Safari, Chrome Mobile)
 
-## 🚀 Deploy no GitHub Pages
+## Deploy no GitHub Pages
 
 1. Acesse as configurações do seu repositório no GitHub
 2. Navegue até "Pages"
@@ -135,28 +135,28 @@ Os dados são armazenados localmente no navegador usando `localStorage` e não s
 5. Clique em "Save"
 6. A aplicação estará disponível em: `https://seu-usuario.github.io/mapa_bus/`
 
-## 📝 Futuras Melhorias
+## Futuras Melhorias
 
-- [ ] Exportar dados em CSV/PDF
-- [ ] Diferentes tipos de assentos (normal, acessibilidade, etc.)
-- [ ] Histórico de reservas
-- [ ] Sincronização com banco de dados
-- [ ] Sistema de autenticação
-- [ ] Múltiplos ônibus
-- [ ] Preços por assento
+- Exportar dados em CSV/PDF
+- Diferentes tipos de assentos (normal, acessibilidade, etc.)
+- Histórico de reservas
+- Sincronização com banco de dados
+- Sistema de autenticação
+- Múltiplos ônibus
+- Preços por assento
 
-## 🤝 Contribuições
+## Contribuições
 
 Contribuições são bem-vindas! Sinta-se à vontade para:
 - Reportar bugs
 - Sugerir novas funcionalidades
 - Enviar pull requests com melhorias
 
-## 📄 Licença
+## Licença
 
 Este projeto está disponível sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
 
-## 👨‍💻 Autor
+## Autor
 
 Desenvolvido por **Júlio César** para gerenciamento eficiente de assentos em ônibus.
 
