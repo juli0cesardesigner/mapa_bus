@@ -3,108 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa de Ônibus - Gerenciador de Assentos</title>
+    <title>Mapa de Ônibus</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>🚌 Mapa de Ônibus</h1>
-            <p class="subtitle">Gerenciador de assentos</p>
-        </header>
-
         <main>
             <div class="content-wrapper">
-                <!-- Bus Seating Layout -->
                 <section class="bus-section">
                     <div class="bus-container">
                         <div class="bus-header">
-                            <div>
-                                <span class="bus-name">Ônibus</span>
-                                <div class="bus-stats" style="margin-top: 6px;">
-                                    <span class="stat">Ocupados: <strong id="occupiedCount">0</strong></span>
-                                    <span class="stat">Disponíveis: <strong id="availableCount">40</strong></span>
-                                </div>
-                            </div>
+                            <span>Ocupados: <strong id="occupiedCount">0</strong></span>
+                            <span>Disponíveis: <strong id="availableCount">40</strong></span>
                         </div>
 
                         <div class="bus-layout">
-                            <div class="bus-body">
-                                <!-- Front of bus -->
-                                <div class="bus-front">🚗</div>
-
-                                <!-- Seat grid with corridor -->
-                                <div class="seats-grid" id="seatsGrid">
-                                    <div class="seats-left" id="seatsLeft"></div>
-                                    <div class="corridor"></div>
-                                    <div class="seats-right" id="seatsRight"></div>
-                                </div>
-
-                                <!-- Legend -->
-                                <div class="legend">
-                                    <div class="legend-item">
-                                        <div class="seat seat-available"></div>
-                                        <span>Disponível</span>
-                                    </div>
-                                    <div class="legend-item">
-                                        <div class="seat seat-occupied"></div>
-                                        <span>Ocupado</span>
-                                    </div>
-                                    <div class="legend-item">
-                                        <div class="seat seat-selected"></div>
-                                        <span>Selecionado</span>
-                                    </div>
-                                </div>
+                            <div class="seats-grid" id="seatsGrid">
+                                <div class="seats-left" id="seatsLeft"></div>
+                                <div class="corridor"></div>
+                                <div class="seats-right" id="seatsRight"></div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Passenger Management -->
                 <section class="management-section">
                     <div class="management-panel">
-                        <h2>Passageiros</h2>
-
-                        <!-- Add Passenger Form -->
                         <div class="form-group">
-                            <h3>Novo Passageiro</h3>
-                            <div class="input-group">
-                                <input 
-                                    type="text" 
-                                    id="passengerName" 
-                                    placeholder="Nome"
-                                    class="input-field"
-                                >
-                                <select id="seatSelect" class="input-field">
-                                    <option value="">Selecione um assento</option>
-                                </select>
-                                <button id="addPassengerBtn" class="btn btn-primary">Adicionar</button>
-                            </div>
-                            <small class="help-text">Clique no assento ou selecione no dropdown</small>
+                            <input 
+                                type="text" 
+                                id="passengerName" 
+                                placeholder="Nome"
+                                class="input-field"
+                            >
+                            <select id="seatSelect" class="input-field">
+                                <option value="">Assento</option>
+                            </select>
+                            <button id="addPassengerBtn" class="btn btn-primary">Adicionar</button>
                         </div>
 
-                        <!-- Passengers List -->
                         <div class="passengers-container">
-                            <h3>Cadastrados (<span id="passengerCount">0</span>)</h3>
-                            <div class="search-box">
-                                <input 
-                                    type="text" 
-                                    id="searchInput" 
-                                    placeholder="Buscar..."
-                                    class="input-field"
-                                >
-                            </div>
+                            <input 
+                                type="text" 
+                                id="searchInput" 
+                                placeholder="Buscar..."
+                                class="input-field"
+                            >
                             <ul id="passengerList" class="passenger-list"></ul>
-                            <button id="clearAllBtn" class="btn btn-danger btn-small" style="width: 100%;">Limpar Todos</button>
+                            <button id="clearAllBtn" class="btn btn-danger">Limpar</button>
                         </div>
                     </div>
                 </section>
             </div>
         </main>
-
-        <footer>
-            <p>&copy; 2025 Mapa de Ônibus</p>
-        </footer>
     </div>
 
     <script src="script.js"></script>
