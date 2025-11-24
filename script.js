@@ -85,10 +85,26 @@ function selectSeat(seatNumber) {
 }
 
 /**
- * Update seat select dropdown
+ * Update seat select dropdown with available seats
  */
 function updateSeatSelect() {
     const seatSelect = document.getElementById('seatSelect');
+    
+    // Clear options except the first one
+    seatSelect.innerHTML = '<option value="">Selecione um assento</option>';
+    
+    // Add available seats as options
+    for (let i = 1; i <= BUS_CONFIG.totalSeats; i++) {
+        const isOccupied = busState.passengers.some(p => p.seat === i);
+        if (!isOccupied) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = `Assento ${i}`;
+            seatSelect.appendChild(option);
+        }
+    }
+    
+    // Set the selected value
     seatSelect.value = busState.selectedSeat || '';
 }
 
@@ -100,6 +116,7 @@ function setupEventListeners() {
     const clearAllBtn = document.getElementById('clearAllBtn');
     const searchInput = document.getElementById('searchInput');
     const passengerName = document.getElementById('passengerName');
+    const seatSelect = document.getElementById('seatSelect');
 
     addPassengerBtn.addEventListener('click', addPassenger);
     clearAllBtn.addEventListener('click', clearAllPassengers);
@@ -109,6 +126,18 @@ function setupEventListeners() {
             addPassenger();
         }
     });
+    
+    // Add event listener to seat select dropdown
+    seatSelect.addEventListener('change', (e) => {
+        const selectedSeatNumber = parseInt(e.target.value);
+        if (selectedSeatNumber) {
+            busState.selectedSeat = selectedSeatNumber;
+            renderSeats();
+        }
+    });
+    
+    // Initialize seat select dropdown
+    updateSeatSelect();
 }
 
 /**
@@ -161,8 +190,10 @@ function addPassenger() {
     renderSeats();
     renderPassengers();
     updateUI();
+    updateSeatSelect();
 
     showNotification(`Passageiro "${name}" adicionado ao assento ${passenger.seat}!`, 'success');
+    nameInput.focus();
 }
 
 /**
