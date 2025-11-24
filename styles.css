@@ -206,6 +206,14 @@ main {
     user-select: none;
 }
 
+.seat[draggable="true"] {
+    cursor: grab;
+}
+
+.seat[draggable="true"]:active {
+    cursor: grabbing;
+}
+
 .seat-available {
     background: var(--bg-color);
     border-color: #475569;
@@ -224,8 +232,14 @@ main {
     background: #7f1d1d;
     border-color: #dc2626;
     color: #fca5a5;
-    cursor: not-allowed;
+    cursor: grab;
     opacity: 0.75;
+}
+
+.seat-occupied:hover {
+    opacity: 1;
+    background: #991b1b;
+    transform: scale(1.08);
 }
 
 .seat-selected {

@@ -8,7 +8,8 @@ const BUS_CONFIG = {
 // State management
 let busState = {
     passengers: [],
-    selectedSeat: null
+    selectedSeat: null,
+    draggedPassengerId: null
 };
 
 // Initialize application
@@ -54,12 +55,14 @@ function createSeatElement(seatNumber) {
     seat.className = 'seat';
     seat.textContent = seatNumber;
     seat.dataset.seatNumber = seatNumber;
+    seat.draggable = true;
 
     // Determine seat status
     const passenger = busState.passengers.find(p => p.seat === seatNumber);
     if (passenger) {
         seat.classList.add('seat-occupied');
         seat.title = `Ocupado: ${passenger.name}`;
+        seat.dataset.passengerId = passenger.id;
     } else {
         seat.classList.add('seat-available');
         seat.title = 'Clique para selecionar';
@@ -72,6 +75,40 @@ function createSeatElement(seatNumber) {
 
     // Add click event listener
     seat.addEventListener('click', () => selectSeat(seatNumber));
+
+    // Drag and Drop events
+    seat.addEventListener('dragstart', (e) => {
+        if (passenger) {
+            busState.draggedPassengerId = passenger.id;
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', passenger.id);
+            seat.style.opacity = '0.5';
+        } else {
+            e.preventDefault();
+        }
+    });
+
+    seat.addEventListener('dragend', () => {
+        seat.style.opacity = '1';
+        busState.draggedPassengerId = null;
+    });
+
+    seat.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+        seat.style.borderWidth = '2px';
+    });
+
+    seat.addEventListener('dragleave', () => {
+        seat.style.borderWidth = '1.5px';
+    });
+
+    seat.addEventListener('drop', (e) => {
+        e.preventDefault();
+        seat.style.borderWidth = '1.5px';
+        const passengerId = parseInt(e.dataTransfer.getData('text/plain'));
+        movePassengerToSeat(passengerId, seatNumber);
+    });
 
     return seat;
 }
@@ -120,6 +157,33 @@ function updateSeatSelect() {
     
     // Set the selected value
     seatSelect.value = busState.selectedSeat || '';
+}
+
+/**
+ * Move passenger from one seat to another
+ */
+function movePassengerToSeat(passengerId, newSeatNumber) {
+    const passenger = busState.passengers.find(p => p.id === passengerId);
+    if (!passenger) return;
+
+    // Check if target seat is already occupied
+    const targetOccupied = busState.passengers.some(p => p.seat === newSeatNumber && p.id !== passengerId);
+    if (targetOccupied) {
+        showNotification('Este assento já está ocupado!', 'warning');
+        return;
+    }
+
+    const oldSeat = passenger.seat;
+    passenger.seat = newSeatNumber;
+
+    // Update UI
+    saveData();
+    renderSeats();
+    renderPassengers();
+    updateUI();
+    updateSeatSelect();
+
+    showNotification(`${passenger.name} movido do assento ${oldSeat} para ${newSeatNumber}`, 'success');
 }
 
 /**
